@@ -23,6 +23,7 @@ public class JeuDeCartes{
                 cartes.add(c.getCarte());
             }
         }
+        return cartes.toArray(new Carte[0]);
     }
 
     private static class Configuration {
