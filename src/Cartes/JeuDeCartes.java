@@ -1,5 +1,8 @@
 package Cartes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JeuDeCartes{
     Configuration[] typeDeCartes = new Configuration[19];
 
@@ -13,7 +16,13 @@ public class JeuDeCartes{
     }
 
     public Carte[] donnerCartes(){
-        return
+        List<Carte> cartes = new ArrayList<>();
+        for (Configuration c : typeDeCartes) {
+            int nbC = c.getNbExemplaires();
+            for (int i = 0; i <= nbC; i++) {
+                cartes.add(c.getCarte());
+            }
+        }
     }
 
     private static class Configuration {
