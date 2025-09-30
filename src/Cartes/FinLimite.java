@@ -1,6 +1,6 @@
 package Cartes;
 
-public class FinLimite {
+public class FinLimite extends Limite{
 
     @Override
     public String toString() {
