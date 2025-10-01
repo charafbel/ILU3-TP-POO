@@ -5,5 +5,7 @@ public abstract class Carte {
     }
 
     @Override
-    public abstract String toString();
+    public boolean equals(Object obj) {
+        return obj.getClass().equals(this.getClass());
+    }
 }

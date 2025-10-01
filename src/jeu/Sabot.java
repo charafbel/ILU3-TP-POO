@@ -24,6 +24,7 @@ public class Sabot implements Iterable<Carte>{
         }
         cartes[nbCartes] = carte;
         nbCartes++;
+        modifs++;
     }
     public Carte piocher() {
         Iterator<Carte> it = this.iterator();

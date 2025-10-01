@@ -12,7 +12,7 @@ public abstract class Probleme extends Carte {
     }
 
     @Override
-    public String toString() {
-        return "Carte Problème de type " + type;
+    public boolean equals(Object obj) {
+        return super.equals(obj) && this.getType().equals(((Probleme)obj).getType());
     }
 }
