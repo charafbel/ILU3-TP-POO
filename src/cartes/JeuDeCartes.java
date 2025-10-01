@@ -30,15 +30,15 @@ public class JeuDeCartes{
     public boolean checkCount(){
         int somme = 0;
         for(Configuration c : typeDeCartes){
-            somme += c.nbExemplaires;x  
+            somme += c.nbExemplaires;
         }
         return somme == 106;
     }
     public String affichageJeuDeCartes() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < typeDeCartes.length; i++) {
-            sb.append(typeDeCartes[i].getNbExemplaires() + "  ");
-            sb.append(typeDeCartes[i].getCarte() + "\n");
+        for (Configuration c : typeDeCartes) {
+            sb.append(c.getNbExemplaires() + "  ");
+            sb.append(c.getCarte() + "\n");
         }
         return sb.toString();
     }
