@@ -29,8 +29,8 @@ public class JeuDeCartes{
     }
     public boolean checkCount(){
         int somme = 0;
-        for(int i = 0; i < typeDeCartes.length; i++){
-            somme += typeDeCartes[i].nbExemplaires;
+        for(Configuration c : typeDeCartes){
+            somme += c.nbExemplaires;x  
         }
         return somme == 106;
     }
