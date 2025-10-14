@@ -61,4 +61,24 @@ public class GestionCartes {
         }
         return segmentedList;
     }
+
+    public static <T> boolean verifierRassemblement(List<T> liste) {
+        if (liste.isEmpty()) return true;
+        ListIterator<T> i = liste.listIterator();
+        T current = i.next();
+        while (i.hasNext()) {
+            T next = i.next();
+            if (!current.equals(next)) {
+                ListIterator<T> j = liste.listIterator(i.nextIndex() - 1);
+                while (j.hasNext()) {
+                    T rest = j.next();
+                    if (current.equals(rest)) {
+                        return false;
+                    }
+                }
+                current = next;
+            }
+        }
+        return true;
+    }
 }
