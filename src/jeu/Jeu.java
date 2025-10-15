@@ -1,9 +1,6 @@
 package jeu;
 import cartes.*;
-import jeu.*;
 import utils.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.*;
 
 public class Jeu {

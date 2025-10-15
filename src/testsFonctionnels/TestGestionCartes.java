@@ -13,16 +13,16 @@ public class TestGestionCartes {
             listeCarteNonMelangee.add(carte);
         }
         List<Carte> listeCartes = new ArrayList<>(listeCarteNonMelangee);
-        /*
+
         System.out.println(listeCartes);
         System.out.println("Avant melange \n");
-         */
+
         listeCartes = GestionCartes.melanger(listeCartes);
-        /*
+
         System.out.println(listeCartes);
         System.out.println("liste mélangée sans erreur ? "
                 + GestionCartes.verifierMelange(listeCarteNonMelangee, listeCartes));
-         */
+
         listeCartes = GestionCartes.rassembler(listeCartes);
         System.out.println(listeCartes);
         System.out.println("liste rassemblée sans erreur ? "
