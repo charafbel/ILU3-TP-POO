@@ -31,6 +31,9 @@ public class Joueur {
     public void deposer(Carte c){
         zJeu.deposer(c);
     }
+    public boolean estDepotAutorise(Carte carte) {
+        return zJeu.estDepotAutorise(carte);
+    }
 
     @Override
     public boolean equals(Object obj) {
