@@ -28,7 +28,9 @@ public class Joueur {
         return carte;
     }
 
-
+    public void deposer(Carte c){
+        zJeu.deposer(c);
+    }
 
     @Override
     public boolean equals(Object obj) {
