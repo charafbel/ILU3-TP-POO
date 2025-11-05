@@ -26,9 +26,7 @@ public class TestZoneDeJeu {
 		zoneDeJeu.deposer(new FinLimite());
 		System.out.println("Limite : " + zoneDeJeu.donnerLimitationVitesse());
         */
-
-
-
+		/*
         // TP3 PARTIE 3
 		boolean depotOK = false;
 		ZoneDeJeu zoneDeJeu = new ZoneDeJeu();
@@ -137,7 +135,8 @@ public class TestZoneDeJeu {
 			zoneDeJeu.deposer(new Borne(100));
 		}
 	    System.out.println("peut avancer ? " + zoneDeJeu.peutAvancer());
-
+		*/
+		/*
 // RESULTAT ATTENDU POUR LA PARTIE 3 (ne pas d�commenter)
 // 			Deposer carte Feu rouge
 //			d�p�t ok ? false
@@ -179,6 +178,9 @@ public class TestZoneDeJeu {
 //			Deposer carte borne - 100
 //			d�p�t ok ? true
 //			peut avancer ? true
+		*/
+
+
 
 //		// TP4 Partie 1
 //		boolean depotOK = false;

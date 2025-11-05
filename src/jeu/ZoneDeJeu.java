@@ -7,6 +7,7 @@ public class ZoneDeJeu {
     List<Limite> pLimites = new ArrayList<>();
     List<Bataille> pBatailles = new ArrayList<>();
     Collection<Borne> pBornes = new ArrayList<>();
+    HashSet<Botte> bottes = new HashSet<>();
 
     public ZoneDeJeu(){}
 
