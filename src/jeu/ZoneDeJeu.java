@@ -6,14 +6,12 @@ import java.util.*;
 public class ZoneDeJeu {
     List<Limite> pLimites = new ArrayList<>();
     List<Bataille> pBatailles = new ArrayList<>();
-    List<Borne> pBornes = new ArrayList<>();
+    Collection<Borne> pBornes = new ArrayList<>();
 
-    public ZoneDeJeu() {
-
-    }
+    public ZoneDeJeu(){}
 
     public int donnerLimitationVitesse(){
-        if (pLimites.isEmpty() || (pLimites.get(0)).getClass() == FinLimite.class) {
+        if (pLimites.isEmpty() || pLimites.get(pLimites.size()-1) instanceof FinLimite){
             return 200;
         }
         return 50;
@@ -22,7 +20,7 @@ public class ZoneDeJeu {
     public int donnerKmParcourus(){
         int nbKmParcourus = 0;
         for (Iterator i = pBornes.iterator(); i.hasNext(); ) {
-            nbKmParcourus = ((Borne)i.next()).getKm();
+            nbKmParcourus += ((Borne)i.next()).getKm();
         };
         return nbKmParcourus;
     }
@@ -34,26 +32,27 @@ public class ZoneDeJeu {
         }
         if (c instanceof Bataille){
             pBatailles.add((Bataille)c);
-            System.out.println("Depot Attaque :  " + ((Bataille) c).getType() + " km");
+            System.out.println("Depot Attaque :  " + ((Bataille) c).getType());
         }
         if (c instanceof Limite){
             pLimites.add((Limite)c);
             System.out.println("Depot " + ((Limite) c) + " kmh");
         }
     }
-    public boolean peutAvancer() {
+
+    public boolean peutAvancer(){
         if (pBatailles.isEmpty()){
             return false;
         }
         Bataille sommet = pBatailles.get(pBatailles.size() - 1);
         return (sommet instanceof Parade && sommet.getType() == Type.FEU);
     }
+
     public boolean estDepotFeuVertAutorise(){
         if (pBatailles.isEmpty()){
-            return false;
+            return true;
         }
         Bataille sommet = pBatailles.get(pBatailles.size() - 1);
-
         if (sommet instanceof Attaque && sommet.getType() == Type.FEU) {
             return true;
         }
@@ -62,6 +61,7 @@ public class ZoneDeJeu {
         }
         return false;
     }
+
     public boolean estDepotBorneAutorise(Borne borne){
         if (!peutAvancer()){
             return false;
@@ -74,10 +74,11 @@ public class ZoneDeJeu {
         }
         return true;
     }
-    public boolean estDepotLimiteAutorise(Limite limite) {
+
+    public boolean estDepotLimiteAutorise(Limite limite){
         // Si la pile est vide, seul un début de limite est autorisé
         if (pLimites.isEmpty()) {
-            return (limite instanceof DebutLimite); // true si c’est un début
+            return (limite instanceof DebutLimite); // true si c'est un début
         }
 
         // Récupérer le sommet de la pile (la dernière limite posée)
@@ -86,38 +87,41 @@ public class ZoneDeJeu {
         // Cas a : le paramètre est un début de limite
         if (limite instanceof DebutLimite){
             // On peut poser un début si la pile est vide ou si le sommet est une fin
-            return (limite instanceof FinLimite);
+            return (sommet instanceof FinLimite);
         }
 
         // Cas b : le paramètre est une fin de limite
-        if (limite instanceof FinLimite) {
+        if (limite instanceof FinLimite){
             // On peut poser une fin si le sommet est un début de limite
-            return (limite instanceof DebutLimite);
+            return (sommet instanceof DebutLimite);
         }
         return false;
     }
-    public boolean estDepotBatailleAutorise(Bataille bataille) {
+
+    public boolean estDepotBatailleAutorise(Bataille bataille){
         // Cas 1 : c’est une attaque
         if (bataille instanceof Attaque) {
-            return !peutAvancer();
+            return peutAvancer();
         }
         // Cas 2 : c’est une parade
         if (bataille instanceof Parade) {
             Bataille sommet = pBatailles.isEmpty() ? null : pBatailles.get(pBatailles.size() - 1);
             if (bataille.getType() == Type.FEU) {
-                if (sommet == null) return true;
-                if (sommet instanceof Attaque && sommet.getType() == Type.FEU) return true;
-                if (sommet instanceof Parade && sommet.getType() != Type.FEU) return true;
+                if (sommet == null) return true; 
+                if (sommet instanceof Attaque && sommet.getType() == Type.FEU) return true; 
+                if (sommet instanceof Parade && sommet.getType() != Type.FEU) return true; 
                 return false;
             } else {
+
                 if (sommet == null) return false;
-                return (sommet instanceof Attaque && sommet.getType() == bataille.getType());
+                return (sommet instanceof Attaque && sommet.getType().equals(bataille.getType()));
             }
         }
 
         return false;
     }
-    public boolean estDepotAutorise(Carte carte) {
+
+    public boolean estDepotAutorise(Carte carte){
         if (carte instanceof Borne) {
             return estDepotBorneAutorise((Borne) carte);
         }
@@ -129,7 +133,4 @@ public class ZoneDeJeu {
         }
         return false;
     }
-
-
-
 }
